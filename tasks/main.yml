@@ -7,8 +7,7 @@
     mode:    a+rwx,g-w,o-w
   loop: "{{ certbot_automated_renewal_post_renewal_hooks }}"
   loop_control:
-    loop_var: certbot_automated_renewal_post_renewal_hooks
-
+    loop_var: certbot_automated_renewal_post_renewal_hook
 
 - name: Ensure scheduled certbot renewal
   ansible.builtin.cron:
