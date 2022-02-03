@@ -1,0 +1,14 @@
+---
+
+galaxy_info:
+  role_name: certbot_automated_renewal
+  description: configure certbot automated renewal
+  author: l_with
+  license: MIT
+  min_ansible_version: '2.9'
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+
+...
