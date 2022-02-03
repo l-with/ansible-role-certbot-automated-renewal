@@ -1,0 +1,24 @@
+---
+
+- name: Ensure certbot post renewal-hook
+  ansible.builtin.copy:
+    content: "{{ certbot_automated_renewal_post_renewal_hook.file_content }}"
+    dest:    /etc/letsencrypt/renewal-hooks/post/{{ certbot_automated_renewal_post_renewal_hook.file_name }}
+    mode:    a+rwx,g-w,o-w
+  loop: "{{ certbot_automated_renewal_post_renewal_hooks }}"
+  loop_control:
+    loop_var: certbot_automated_renewal_post_renewal_hooks
+
+
+- name: Ensure scheduled certbot renewal
+  ansible.builtin.cron:
+    cron_file: "ansible_certbot_renewal"
+    user:      root
+    name:      certbot_renewal
+    hour:      "{{ certbot_automated_renewal_cron_hour }}"
+    minute:    "{{ certbot_automated_renewal_cron_minute }}"
+    job: >
+      python3 -c 'import random; import time; time.sleep(random.random() * 3600)'
+      && certbot renew -q
+
+...

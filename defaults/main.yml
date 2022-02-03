@@ -1,0 +1,7 @@
+---
+
+certbot_automated_renewal_cron_hour:          0,12
+certbot_automated_renewal_cron_minute:        0
+certbot_automated_renewal_post_renewal_hooks: []
+
+...
